@@ -6,6 +6,8 @@
 
 用的编译工具是：Notepad++  ，学习初期比较方便
 
+本地截图不能在github上正常显示，可以将截图保存在有道云笔记上，写成网络地址，但这样在本地就不能好好显示了，所以编写者，这里就偷懒用本地地址了。
+
 #### 1.1JDK与JRE
 
 JDK 下载地址：http://www.oracle.com/cn/index.html
@@ -27,6 +29,8 @@ JAVA具有跨平台性
 JAVA的跨平台需要依靠JAVA的虚拟机JVM
 
 #### 1.3JAVA程序编译的过程
+
+
 
 ![1557234000386](C:\Users\请\AppData\Roaming\Typora\typora-user-images\1557234000386.png)
 
@@ -109,14 +113,11 @@ Java两大数据类型：内置数据类型/基本数据类型、引用数据类
 ##### 2.1.2引用数据类型(三种)
 
 - 引用类型指向一个对象，指向对象的变量是引用变量。这些变量在声明时候被指定为一个特定的类型，声明之后不能改变。
-   
-
+  
 - 引用数据类型包括：类（对象）、接口、数组。
-   
-
+  
 - 所有引用类型默认值都是null.
-   
-
+  
 - 一个引用变量可以用于引用任何与之兼容的类型。
 
 
@@ -1476,9 +1477,9 @@ public class Shopp{
 #### 5.1引用数据类型分类
 
 - 引用数据类型包括：类（对象）、接口、数组。
-   
+  
 - 所有引用类型默认值都是null.
-   
+  
 - 一个引用变量可以用于引用任何与之兼容的类型。
 
 ##### 5.1.1类的类型分类
@@ -1506,3 +1507,577 @@ java代码映射成现实事物的过程就是定义类的过程。
 我们就拿一部手机进行分析，它能用来做什么呢？它可以打电话，上网，聊微信等，这些就是手机所提供的功能，也就是方法；手机也有它的特征，如颜色、尺寸大小、品牌型号等，这些就是手机的特征，也就是属性。
 
 目前，我们只关注类中的属性，类中的方法在面向对象部分再进行学习。
+
+##### 5.1.4自定义手机类和测试
+
+~~~java
+/*
+    定义类:
+	  使用类的形式,对现实中的事物进行描述
+	  事物: 方法,属性
+	    方法: 这个事物具备的功能
+		属性: 变量
+
+     格式:
+	   public class 类名{
+		    属性定义
+			  修饰符 数据类型 变量名 = 值
+			
+			方法定义
+			  修饰符 返回值类型  方法名(参数列表){
+				  
+			  }
+	   }
+	   
+	   要求: 使用Java中的类,描述生活中的手机这个事物
+	     手机事物,具备哪些属性, 属于他自己的特性
+		   颜色,品牌, 大小
+*/
+public class Phone{
+	/*
+	    定义手机的属性
+	*/
+	String color ;
+	String brand ;
+	double size ; 
+}
+
+~~~
+
+~~~java
+/*
+   测试,刚定义好的Phone类
+   创建引用类型变量的格式
+   
+     数据类型  变量名 = new 数据类型();
+	 
+	实现引用类型的步骤
+	  1: 导入包 , 类都是在同一个文件夹,不需要导入包
+	  2: 创建引用类型的变量
+	  3: 变量.类型中的功能
+*/
+
+public class TestPhone{
+	public static void main(String[] args){
+		// 2: 创建引用类型的变量
+		Phone p = new Phone();
+		//System.out.println(p);  //输出内存的地址
+	
+     	//3: 变量.类型中的功能
+		//变量 p.的方式,调用类中的属性
+		//属性就是变量 , 赋值和获取值
+		p.color = "土豪金";
+		p.brand = "爱立信";
+		p.size = 5.0;
+		
+		//获取属性值
+		System.out.println(p.color+"  "+p.brand+"  "+p.size);
+	}
+}
+~~~
+
+~~~java
+/*
+    测试手机类
+	  创建2个手机类的变量
+*/
+public class TestPhone_1{
+	public static void main(String[] args){
+		//创建手机类型变量
+		Phone p1 = new Phone();
+		
+		//再次创建手机类型变量
+		Phone p2 = new Phone();
+		
+		p1.color = "白色";
+		p1.brand = "锤子";
+		p1.size = 4.5;
+		
+		p2.brand = "华为";
+		
+		System.out.println(p1.brand);
+		System.out.println(p2.brand);
+		System.out.println(p2.size);
+	}
+}
+~~~
+
+##### 5.1.5自定义类的内存图
+
+![1557631844291](C:\Users\请\AppData\Roaming\Typora\typora-user-images\1557631844291.png)
+
+5.1.6自定义类的练习
+
+~~~java
+/*
+	定义测试类
+	  同时测试，电饭锅，学生，汽车
+
+*/
+
+public class Test{
+	public static void main(String args[]){
+		//创建电饭锅的引用类型
+		DianFanGuo dfg=new DianFanGuo();
+		
+		dfg.brand="特斯拉";
+		dfg.colour="红色";
+		dfg.size=30;
+		
+		System.out.println(dfg.brand+" "+dfg.colour+" "+dfg.size);
+		
+		//创建汽车引用
+		Car c=new Car();
+		c.brand="兰博基尼";
+		c.type="超跑";
+		c.paiLiang=0.5;
+		
+		System.out.println(c.brand+" "+c.type+" "+c.paiLiang);
+	}
+}
+~~~
+
+~~~java
+/*
+    电饭锅，包含属性（品牌、容量大小、颜色等）
+	定义类,描述事物,电饭锅
+	  属性: 品牌,大小 ,颜色
+	
+	定义类,类名字,电饭锅
+	类的范围,定义三个属性
+*/
+
+public class DianFanGuo{
+	//定义三个属性
+	String brand;
+	double size;
+	String colour;
+}
+~~~
+
+~~~java
+/*
+	汽车，包含属性(品牌、排量、类型等)
+	定义类，类名 Car
+	 属性 品牌 排量 类型 
+	 
+*/
+
+public class Car{
+	//定义汽车三个属性
+	String brand;
+	double paiLiang;
+	String type;
+}
+~~~
+
+#### 5.2ArrayList集合的使用
+
+| **基本数据类型** | **对应的引用数据类型表示形式** |
+| ---------------- | ------------------------------ |
+| **byte**         | Byte                           |
+| **short**        | Short                          |
+| **int**          | Integer                        |
+| **long**         | Long                           |
+| **float**        | Float                          |
+| **double**       | Double                         |
+| **char**         | Character                      |
+| **boolean**      | Boolean                        |
+
+~~~java
+/*
+   ArrayList集合的使用
+   也是引用数据类型
+   步骤:
+     1. 导入包 java.util包中
+	 2. 创建引用类型的变量
+	   数据类型< 集合存储的数据类型>  变量名 = new 数据类型 <集合存储的数据类型>  ();
+	   集合存储的数据类型: 要将数据存储到集合的容器中
+	   创建集合引用变量的时候,必须要指定好,存储的类型是什么
+	   
+	   ArrayList<String> array = new ArrayList<String>();
+	  
+	 3. 变量名.方法 
+	 
+	 注意: 集合存储的数据,8个基本类型对应8个引用类型
+	 存储引用类型,不存储基本类型
+*/
+import java.util.ArrayList;
+public class ArrayListDemo{
+	public static void main(String[] args){
+		//创建集合容器,指定存储的数据类型
+		//存储字符串
+		ArrayList<String> array = new ArrayList<String>();
+		
+		//创建集合容器,存储整数
+		ArrayList<Integer> array2 = new ArrayList<Integer>();
+		
+		//创建集合容器,存储手机类型
+		ArrayList<Phone> array3 = new ArrayList<Phone>();
+	}
+}
+
+
+~~~
+
+##### 5.2.1ArrayList的常见方法
+
+| **方法声明**                  | **功能描述**                  |
+| ----------------------------- | ----------------------------- |
+| **boolean add（Object obj）** | 将指定元素obj追加到集合的末尾 |
+| **Object get（int index）**   | 返回集合中指定位置上的元素    |
+| **int size（）**              | 返回集合中的元素个数          |
+
+~~~java
+/*
+   ArrayList 集合中的方法
+   
+   add(参数) 向集合中添加元素,数据存储进去
+   方法中的参数类型,定义集合对象时候的类型是一致
+   
+   ArrayList<Integer> array = new ArrayList<Integer>();
+   array.add(3);
+   
+   get(int index) 取出集合中的元素,get方法的参数,写入索引
+   
+   size() 返回集合的长度, 集合存储元素的个数
+*/
+import java.util.ArrayList;
+public class ArrayListDemo_1{
+	public static void main(String[] args){
+		//定义集合,存储字符串元素
+		ArrayList<String> array = new ArrayList<String>();
+		//调用集合方法add存储元素
+		array.add("abc");
+		array.add("itcast");
+	    array.add("love");
+		array.add("java");
+		//输出集合的长度,调用集合方法size, size方法的返回值类型 int
+		int size = array.size();
+		System.out.println(size);
+		
+		//获取出集合中的一个元素,获取1索引的元素
+		//集合的方法get, 获取元素后结果数据类型
+		String s = array.get(1);
+		System.out.println(s);
+		
+		
+		System.out.println(array.get(0));
+		System.out.println(array.get(1));
+		System.out.println(array.get(2));
+		System.out.println(array.get(3));
+	}
+}
+~~~
+
+##### 5.2.2ArrayList的补充方法
+
+~~~java
+/*
+   集合ArrayList方法的补充
+   
+     add(int 索引,存储的元素) 将元素添加到指定的索引上
+	 set(int 索引,修改后的元素) 将指定索引的元素,进行修改
+	 remove(int 索引) 删除指定索引上的元素
+	 clear() 清空集合中的所有元素
+*/
+import java.util.ArrayList;
+public class ArrayListDemo_3{
+	public static void main(String[] args){
+		
+		ArrayList<Integer> array = new ArrayList<Integer>();
+		array.add(1);
+		array.add(2);
+		array.add(3);
+		array.add(4);
+		
+		//在索引2上,添加元素7
+		array.add(2,7);
+		
+		//将0索引上的元素,修改成10
+		array.set(0,10);
+		
+		//将4索引上的元素,删除
+		array.remove(4);
+		
+		array.clear();
+		
+		//使用方法 size+get组合进行遍历
+		for(int i = 0 ; i < array.size(); i++){
+			System.out.println( array.get(i) );
+		}
+	}
+}
+~~~
+
+##### 5.2.3随机点名器
+
+
+
+~~~java
+/*
+	随机点名器，集合改进(学生的姓名和年龄)
+	现实中有学生这个事物，使用定义类的形式，描述学生事物
+	属性:姓名，年龄
+	
+	姓名储存了数组，将容器转成集合
+	String[] s={"",""};
+	集合中，存储的是学生的姓名吗？ 应该存储Student类型
+	
+	
+	存储学生:
+		学生类型，存储到集合中
+	总览:遍历集合
+	随机:随机数，作为索引，到集合中找到元素
+	
+	定义三个功能，共享数据，集合容器;
+	定义三个方法，必须参数传递集合;
+*/
+import java.util.Random;
+import java.util.ArrayList;
+
+
+public class CallName{
+	public static void main(String args[]){
+		//定义集合，储存的是StudentName类型变量
+		ArrayList <StudentName> array=new ArrayList<StudentName>();
+		//调用添加方法
+		add(array);
+		//调用遍历集合
+		printArrayList(array);
+		randomStudentName(array);
+	}
+	/*
+		随机数，当作集合的索引，到集合中找到元素
+	
+	*/
+	public static void randomStudentName(ArrayList<StudentName> array){
+		Random ran=new Random();
+		int number=ran.nextInt(array.size());
+		//随机数，索引，到集合中get
+		StudentName s=array.get(number);
+		System.out.println(s.name+" "+s.age);
+	}
+	
+/*
+	总览学生信息，遍历集合
+*/
+	public static void printArrayList(ArrayList<StudentName> array){
+		for(int i=0;i<array.size();i++){
+		//存储集合的时候，集合.add(sn1) sn1是StudentName
+		//获取的时候，集合.get方法，获取出来是什么  还是StudentName类型变量
+		    StudentName s=array.get(i);
+			System.out.println(s.name+" "+s.age);
+		}
+	}
+
+
+/*
+	定义方法，实现存储学生的姓名和年龄
+	创建StudentName类型变量，存储到集合中
+*/
+	public static void add(ArrayList<StudentName> array){
+	//创建StudentName类型变量
+		StudentName sn1=new StudentName();
+		StudentName sn2=new StudentName();
+		StudentName sn3=new StudentName();
+		StudentName sn4=new StudentName();
+		StudentName sn5=new StudentName();
+	
+		sn1.name="张三1";
+		sn1.age=201;
+	
+		sn2.name="张三2";
+		sn2.age=202;
+	
+		sn3.name="张三3";
+		sn3.age=203;
+	
+		sn4.name="张三4";
+		sn4.age=204;
+	
+		sn5.name="张三5";
+		sn5.age=205;
+		//将StudentName变量，储存到集合中
+		array.add(sn1);
+		array.add(sn2);
+		array.add(sn3);
+		array.add(sn4);
+		array.add(sn5);
+	
+	}
+}
+~~~
+
+~~~java
+/*
+    描述学生事物的类
+	  属性: 姓名和年龄
+	学生类型的变量,存储到集合中
+	  
+*/
+public class StudentName{
+	String name;
+	int age;
+}
+~~~
+
+##### 5.2.4库存管理
+
+~~~java
+/*
+	实现库存管理案例:
+		1.存储商品信息
+			存储商品信息
+			将商品类型的变量，存储到集合中
+			
+		2.查看库存清单
+			将集合进行遍历，获取出集合中存储的Goods类型变量
+			输出每一个Goods类型的属性
+			计算求和:总库存,金额数
+		 
+		3.修改商品库存
+			集合遍历，获取出集合中储存的Goods类型的变量
+			变量调用Goods类的属性count,值进行修改(键盘输入)
+*/
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Shopp{
+	public static void main(String args[]){
+		//创建ArrayList集合，存储Goods类型
+		ArrayList<Goods> array=new ArrayList<Goods>();
+		//调用添加商品信息的方法
+		addGoods(array);
+		//进入死循环
+		while(true){
+			//调用选择功能的方法，获取用户输入的序号
+			int number=chooseFunction();
+			//对序号判断，如果=1 进入查看库存功能 =2进入修改库存功能 =3退出
+			switch(number){
+				case 1:
+				//进入查看库存方法
+				printStore(array);
+				break;
+				
+				case 2:
+				//进入修改库存功能
+				update(array);
+				break;
+				
+				case 3:
+				return;
+				
+				default:
+				 System.out.println("无此功能");
+				 break;
+			}
+		}
+		
+	}
+	
+	/*
+		定义方法，实现选择菜单，用户根据功能选择菜单
+	*/
+	public static int chooseFunction(){
+		System.out.println("-------------库存管理------------");
+		System.out.println("1.查看库存清单");
+		System.out.println("2.修改商品库存数量");
+		System.out.println("3.退出");
+		System.out.println("请输入要执行的操作序号：");
+		Scanner sc=new Scanner(System.in);
+		int number =sc.nextInt();
+		return number;
+	}
+	
+	/*
+		方法定义，修改库存
+		键盘输入，将Goods的属性count，进行修改(键盘输入)
+	*/
+	public static void update(ArrayList<Goods> array){
+		Scanner sc =new Scanner(System.in);
+		//遍历集合，获取集合中的每个元素
+		for(int i=0;i<array.size();i++){
+			//集合方法get获取的是集合的元素,元素类型Goods
+			Goods g = array.get(i);
+			System.out.println("请输入"+g.brand+"库存数");
+			//Goods属性，count进行修改
+			g.count=sc.nextInt();
+			
+		}
+	}
+	
+	
+	/*
+		定义方法，查看库存清单，遍历集合
+	*/
+	public static void printStore(ArrayList<Goods> array){
+		//输出表头
+		System.out.println("--------------商品库存清单-----------------");
+		System.out.println("品牌型号    尺寸    价格   库存数");
+		
+		int totalCount=0;
+		double totalMoney=0;
+		//遍历集合
+		for(int i=0;i<array.size();i++){
+			//get(索引)获取出集合中的元素，存储的是Goods类，获取的是Goods类型
+			Goods g=array.get(i);
+			
+			System.out.println(g.brand+" "+g.size+" "+g.price+" "+g.count);
+			totalCount=totalCount+g.count;
+			totalMoney=totalMoney+g.count*g.price;
+		}
+		System.out.println("总库存数:"+totalCount);
+		System.out.println("商品库存总金额数:"+totalMoney);
+		
+	}
+	
+	
+	/*
+		定义方法，将商品的信息存储到集合中
+		集合是所有方法的共享数据，参数传递
+	*/
+	
+	public static void addGoods(ArrayList<Goods> array){
+		//创建出商品类型的变量
+		Goods g1=new Goods();
+		Goods g2=new Goods();
+		
+		
+		g1.size=13.3;
+		g1.brand="Macbook";
+		g1.price=9999.9;
+		g1.count=3;
+		
+		g2.size=15.6;
+		g2.brand="Thinkpad";
+		g2.price=7999.9;
+		g2.count=1;
+		
+		array.add(g1);
+		array.add(g2);
+	}
+}
+~~~
+
+~~~java
+/*
+	定义,描述商品的类
+	商品4个属性
+		商品名字 	大小	价格	库存
+		String		double 	double	int
+	定义类,类名Goods
+*/
+
+public class Goods{
+	//定义商品的名字
+	String brand;
+	//大小属性
+	double size;
+	//价格属性
+	double price;
+	//库存属性
+	int count;
+}
+~~~
+
