@@ -1,8 +1,10 @@
 ## JAVA基础语法
 
-该笔记是编写者java学习过程的记录，主要的目的是为了方便以后java的学习和复习。希望能够自己的努力，变得更加优秀，如果你也看到了这份笔记的话，希望他可以给你帮助，让我们一起变得优秀，一起加油。好了，让我们开始吧。
+该笔记是编写者java学习过程的记录，主要的目的是为了方便以后java的学习和复习。如果你也看到了这份笔记的话，希望他可以给你帮助。好了，让我们开始吧。
 
-3个~回车是代码段
+我用的笔记工具是  ：Typora 支持md格式，  大纲模式方便复习
+
+用的编译工具是：Notepad++  ，学习初期比较方便
 
 #### 1.1JDK与JRE
 
@@ -70,13 +72,15 @@ JAVA中自己定义的内容，自定义类的名称，比如说HelloWorld称作
 
 注意：不能以数字开头，不能是关键字，不能用其他符号
 
-##### 1.5.4类
+##### 1.5.4进制
 
-类的名字：首字母大写，第二个单词首字母大写  。（为了方面阅读）
+十进制表示方式：正常数字   如 13、25等
 
-1.5.4进制
+二进制表示方式：以0b(0B)开头    如0b1011 、0B1001 
 
-输出zhen'shu
+十六进制表示方式：以0x(0X)开头   数字以0-9及A-F组成  如0x23A2、0xa、0x10 
+
+八进制表示方式：以0开头   如01、07、0721
 
 #### 1.6程序概念
 
@@ -88,11 +92,36 @@ JAVA中自己定义的内容，自定义类的名称，比如说HelloWorld称作
 
 #### 2.1数据类型
 
+变量就是申请内存来存储值，即当创建变量的时候，需要在内存中申请空间。
+ 内存管理系统根据变量的类型为变量分配存储空间，确定了变量的类型，即确定了数据需分配内存空间的大小，数据在内存的存储方式。
+
+ 
+
+Java两大数据类型：内置数据类型/基本数据类型、引用数据类型
+
+- 基本数据类型：都是直接存储在内存中的内存**栈**上，数据本身的值就是存储在栈空间；
+- 引用数据类型：引用类型继承与Object类，引用（即指针）是存储在有序的内存栈上，而对象本身的值存储在内存堆中。
+
 ##### 2.1.1基本类型四类八种
 
 ![1557543329426](C:\Users\请\AppData\Roaming\Typora\typora-user-images\1557543329426.png)
 
-##### 2.1.2变量的创建和类型装换
+##### 2.1.2引用数据类型(三种)
+
+- 引用类型指向一个对象，指向对象的变量是引用变量。这些变量在声明时候被指定为一个特定的类型，声明之后不能改变。
+   
+
+- 引用数据类型包括：类（对象）、接口、数组。
+   
+
+- 所有引用类型默认值都是null.
+   
+
+- 一个引用变量可以用于引用任何与之兼容的类型。
+
+
+
+##### 2.1.3变量的创建和类型装换
 
  整型 浮点型 类型转换
 
@@ -165,6 +194,8 @@ public class Variable{
 }
 
 ~~~
+
+
 
 #### 2.2算术运算符
 
@@ -330,7 +361,7 @@ public class Shop{
 }
 ~~~
 
-#### 2.6引用数据类型Scanner类，Random随机类
+#### 2.6Scanner类，Random随机类
 
 ##### 2.6.1Scanner类
 
@@ -1032,4 +1063,446 @@ public class CallName{
 
 在Java中，方法就是用来完成解决某件事情或实现某个功能的办法。
 
-#### 
+##### 4.1.1方法的定义和调用
+
+~~~java
+/*
+    方法定义格式
+	   修饰符  返回值类型  方法的名字(参数列表。。){
+		   方法的功能主体
+		     循环，判断，变量，比较，运算
+			 return ;
+	   }
+	 修饰符:目前是固定写法 public static
+     返回值类型:方法在运算后，结果的数据类型
+     方法名：自定义名字，满足标识符规范，方法名字首字母小写，后面每个单词首字母大写
+	 参数列表:方法的运算过程中，是否有未知的数据，如果有未知的数据，定义在参数列表上(定义变量)
+	 return：方法的返回，将计算的结果返回，结束方法
+	 
+*/
+public class MethodDemo{
+	public static void main(String args[]){
+		//调用方法，方法执行起来
+		//在方法main中，调用方法 getArea
+		int area=getArea(5,6);
+		System.out.println(area);
+	}
+	/*
+	   要求：计算一个长方形的面子
+	   定义方法解决这个要求
+	   分析方法定义过程：
+	      1.明确方法计算后的结果的数据类型 int  定义格式队对应的就是返回值类型
+		  2.方法计算过程中，有没有未知的数据，长和宽，未知数据的数据类型 int
+             未知数的变量，定义在方法的小括号内		  
+		  	     
+	*/
+	public static int getArea(int w,int h){
+		//实现方法的功能主体
+		int area =w*h;
+		return area;
+	}
+}
+~~~
+
+##### 4.1.2方法的执行过程
+
+![1557551417139](C:\Users\请\AppData\Roaming\Typora\typora-user-images\1557551417139.png)
+
+##### 4.1.3方法调用的内存图
+
+![1557551827743](C:\Users\请\AppData\Roaming\Typora\typora-user-images\1557551827743.png)
+
+##### 4.1.4方法调用的练习
+
+~~~java
+/*
+    方法调用的练习
+	 
+*/
+import java.util.Scanner;
+public class MethodDemo{
+	public static void main(String args[]){
+		
+		printRect();
+		System.out.println(getNumber());
+		printRect2(3,4);
+	}
+	
+	
+	
+	/*
+		    定义无返回值的无参数方法，如打印3行，每行3个*号的矩阵
+			为什么没有返回值：
+			     打印矩阵，输出效果，不需要将接管返回
+				 明确未知数:不需要未知数
+		*/
+	public static void printRect(){
+		for(int i=0;i<3;i++){
+			for(int j=0;j<3;j++){
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+	
+	
+	/*
+		 定义有返回值无参数方法，如键盘录入得到一个整数
+		 明确方法计算后结果的数据类型int
+		 明确有没有未知数
+		*/
+	public static int getNumber(){
+		Scanner sc=new Scanner(System.in);
+		int number=sc.nextInt();
+		return number;
+	}
+	
+	
+	
+	/*
+		定义无返回值有参数方法，如打印指定M行，每行N个*号的矩阵
+		明确方法计算后结果，控制台输出图像，没有返回值的
+		
+	
+	
+	*/
+	public static void printRect2(int m,int n){
+		for(int i=0;i<m;i++){
+			for(int j=0;j<n;j++){
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+	
+	
+	/*
+	*/
+	
+}
+~~~
+
+
+
+##### 4.1.5方法的定义和使用的注意事项
+
+1.方法不能定义在另一个方法的里面。
+
+2.写错方法名字。
+
+3.写错了参数列表
+
+4.方法返回值的void，方法中可以省略return 不写
+
+​    return下面不能有代码
+
+5.方法返回值类型，和return后面数据类型必须匹配
+
+6.方法重复定义问题
+
+7.调用方法的时候，返回值是void,不能写在输出语句中
+
+##### 4.1.6方法的重载特性
+
+~~~java
+/*
+    方法的重载特性 (overload)
+	在同一个类中,允许出现同名的方法,只要方法的参数列表不同即可,这样方法就是重载
+	参数列表不同: 参数的个数,数据类型,顺序
+*/
+public class MethodOverLoadDemo{
+	public static void main(String[] args){
+		//对于重载的调用,根据参数传递进行区分
+		//System.out.println();
+		double sum = getSum(2.3,3.5);
+		System.out.println(sum);
+	}
+	/*
+	  对参数求和,利用方法的重载特性
+	*/
+	public static int getSum(int a,int b){
+		System.out.println("两个int参数");
+		return a+b;
+	}
+	public static int getSum(int a,int b,int c){
+		System.out.println("三个int参数");
+		return a+b+c;
+	}
+	public static double getSum(double a,double b){
+		System.out.println("两个double参数");
+		return a+b;
+	}
+	/*
+	   定义方法,对参数求和
+	   参数,没规定几个,数据类型
+	
+	public static int getSum(int a ,int b){
+		return a+b;
+	}
+	
+	public static double getSumDouble(double a,double b){
+		return a+b;
+	}
+	public static int getSum3(int a,int b, int c){
+		return a+b+c;
+	}*/
+}
+~~~
+
+##### 4.1.7方法重载的注意事项
+
+1.参数列表必须不同
+
+2.重载和参数变量名无关
+
+3.重载和返回值类型无关
+
+4.重载和修饰符无关
+
+技巧:重载看方法名和参数列表
+
+##### 4.1.8方法参数是基本类型类型注意事项
+
+![1557556940252](C:\Users\请\AppData\Roaming\Typora\typora-user-images\1557556940252.png)
+
+##### 4.1.9方法参数是引用类型注意事项
+
+方法中改变数组的值，会引起中main方法中数组的值的改变，因为引用类型传递的是地址；
+
+![1557556803335](C:\Users\请\AppData\Roaming\Typora\typora-user-images\1557556803335.png)
+
+#### 4.2随机点名器
+
+~~~java
+/*
+	实现随机点名器
+	1.存储所有人的姓名
+	2.预览所有学生的姓名，遍历数组
+	3.随机数最为索引，到数组中找元素
+	
+	将功能独立出来，做成方法，调用方法即可
+	
+	定义三个功能,用到同一个姓名数据
+	姓名存储到数组中，三个方法，使用一个数组中的数据，方法传递参数
+    
+
+
+*/
+
+
+import java.util.Random;
+
+public class CallName{
+	public static void main(String args[]){
+		//定义数组，存储学生姓名
+		String[] names=new String[8];
+		//调用添加姓名方法
+		addStudent(names);
+		//调用遍历数组方法
+		printStudentName(names);
+		//调用随机姓名方法
+		System.out.println(randomStudentName(names));
+	}
+	
+	
+	/*
+		定义方法，实现向数组中添加学生姓名
+		返回值？没有
+		参数是数组
+	
+	
+	*/
+	public static void addStudent(String[] names){
+		names[0]="倪翔宇";
+		names[1]="刘淑媛";
+		names[2]="张三";
+		names[3]="李四";
+		names[4]="韩五";
+		names[5]="李磊";
+		names[6]="王六";
+		names[7]="刘七";
+	}
+	
+	
+	/*
+		定义方法，遍历数组
+		返回值？没有
+		参数？数组
+	*/
+	public static void printStudentName(String[] names){
+		for(int i=0;i<names.length;i++){
+			System.out.println(names[i]);
+		}
+	}
+	
+	
+	
+	/*
+		定义方法，随机数，作为索引，在数组中找到学生姓名
+		返回值？学生姓名
+		参数？  数组
+		
+	
+	*/
+	public static String randomStudentName(String[] names){
+		Random ran=new Random();
+		int index=ran.nextInt(names.length);
+		return names[index];
+	}
+	
+}
+
+
+~~~
+
+#### 4.3库存案例
+
+~~~java
+/*
+   实现商品的库存管理
+     功能:
+	    1. 展示用户选择功能清单
+		2. 根据选择的功能编号,进行不同的操作
+		   A. 展示所有库存
+		   B. 修改库存数量
+		   
+	  分析:
+	    1. 展示用户清单:
+		   输出语句, 用户输入, 选择功能序号
+		2. 根据选择,调用不同的方法
+		    switch语句
+			  case 1 2 3
+		
+		   A  展示库存
+		     将存储商品的数组,遍历
+		   B  修改库存
+		        
+			  修改所有的库存数量
+*/
+import java.util.Scanner;
+public class Shopp{
+	public static void main(String[] args){
+		//使用数组,保存商品的信息
+		//品名,尺寸,价格,库存数, 定义5个数组
+		String[] brand = {"MacBookAir","ThinkpadT450"};
+		double[] size = {13.3,15.6};
+		double[] price = {9998.97,6789.56};
+		int[] count = {0,0};
+		while(true){
+		int choose = chooseFunction();
+		switch(choose){
+			case 1:
+			  //调用查看库存清单方法
+			  printStore(brand,size,price,count);
+			break;
+			
+			case 2:
+			  //调用修改库存的方法
+			  update(brand,count);
+			break;
+			
+			case 3:
+			 return ;
+			
+			
+			default:
+			  System.out.println("没有这个功能");
+			break;
+		}
+		}
+	}
+	/*
+	  定义方法,修改所有商品的库存
+	    用户输入1个,修改1个
+		返回值,没有
+		参数, 库存数的数组, 品名数组
+	*/
+	public static void update(String[] brand, int[] count){
+		//遍历数组,遍历到一个,修改一个
+		//接受键盘输入
+		Scanner sc = new Scanner(System.in);
+		//遍历数组
+		for(int i = 0; i < brand.length ; i++){
+			System.out.println("请输入"+brand[i]+"的库存数");
+			//键盘输入,录入库存, 存储到库存的数组中
+			int newCount = sc.nextInt();
+			count[i] = newCount;
+		}
+		//int chooseNumber = sc.nextInt();
+	}
+	
+	/*
+	   定义方法,展示所有的库存清单,遍历
+	   返回值,没有
+	   参数, 数组
+	*/
+	public static void printStore(String[] brand,double[] size,double[] price,int[] count){
+		System.out.println("----------商场库存清单----------");
+		System.out.println("品牌型号     尺寸    价格    库存数");
+		//定义变量,计算总库存数,和总价格
+		int totalCount = 0;
+		int totalMoney = 0;
+		//遍历数组,将数组中所有的商品信息打印出来
+		for(int i = 0 ; i < brand.length ; i++){
+			System.out.println(brand[i]+"   "+size[i]+"    "+price[i]+"   "+count[i]);
+			totalCount += count[i];
+			totalMoney += count[i]*price[i];
+		}
+		System.out.println("总库存数: "+totalCount);
+		System.out.println("商品库存总金额: "+totalMoney);
+	}
+	
+	/*
+	  定义方法,实现用户的选择功能,功能的需要返回来
+	  返回值, int
+	  参数, 没有
+	*/
+	public static int chooseFunction(){
+		System.out.println("-------------库存管理------------");
+		System.out.println("1.查看库存清单");
+		System.out.println("2.修改商品库存数量");
+		System.out.println("3.退出");
+		System.out.println("请输入要执行的操作序号：");
+		//接受键盘输入
+		Scanner sc = new Scanner(System.in);
+		int chooseNumber = sc.nextInt();
+		return chooseNumber;
+	}
+}
+
+
+~~~
+
+#### 5.1引用数据类型分类
+
+- 引用数据类型包括：类（对象）、接口、数组。
+   
+- 所有引用类型默认值都是null.
+   
+- 一个引用变量可以用于引用任何与之兼容的类型。
+
+##### 5.1.1类的类型分类
+
+提到引用数据类型（类），其实我们对它并不陌生，如使用过的Scanner类、Random类。
+
+我们可以把类的类型为两种：
+
+l 第一种，Java为我们提供好的类，如Scanner类，Random类等，这些已存在的类中包含了很多的方法与属性，可供我们使用。
+
+l 第二种，我们自己创建的类，按照类的定义标准，可以在类中包含多个方法与属性，来供我们使用。
+
+这里我们主要介绍第二种情况的简单使用。
+
+##### 5.1.2自定义数据类型概述
+
+我们在Java中，将现实生活中的事物抽象成了代码。这时，我们可以使用自定义的数据类型（类）来描述（映射）现实生活中的事物。
+
+类，它是引用数据类型，与之前学习的所有引用数据类型相同，自定义类也是一种数据类型。只是自定义类型并非Java为我们预先提供好的类型，而是我们自己定义的一种引用数据类型用来描述一个事物。
+
+##### 5.1.3类的定义与使用
+
+java代码映射成现实事物的过程就是定义类的过程。
+
+我们就拿一部手机进行分析，它能用来做什么呢？它可以打电话，上网，聊微信等，这些就是手机所提供的功能，也就是方法；手机也有它的特征，如颜色、尺寸大小、品牌型号等，这些就是手机的特征，也就是属性。
+
+目前，我们只关注类中的属性，类中的方法在面向对象部分再进行学习。
