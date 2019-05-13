@@ -2081,3 +2081,585 @@ public class Goods{
 }
 ~~~
 
+#### 6.1奇数求和练习
+
+~~~java
+/*
+	要求:
+     计算1-100之间的所有的奇数和
+	 1+3+5+7...+99
+	 
+	 有1个数据,从0变到100  循环 int =0  <= 100  ++
+	 从0-100,范围内,找到奇数  数%2==1 奇数
+	 所有的奇数求和计算
+	 需要变量,保存奇数的求和
+	 
+	 实现步骤:
+	   1. 程序可以使用到的数据,预先定义好变量
+	     需要奇数和
+	   2. 利用循环,让变量从0变化到100
+	   3. 判断变量的变化情况是不是奇数
+	   4. 如果是奇数,和预先定义好的变量,求和
+*/
+public class LoopTest{
+	public static void main(String args[]){
+		//定义变量，保存求和
+		int sum=0;
+		//for循环，循环中的变量，0-100
+		for(int i=0;i<=100;i++){
+			if(i%2==1){
+				//对奇数进行求和
+				sum+=i;			
+			}
+		}
+		System.out.println(sum);
+	}
+}
+~~~
+
+#### 7.1循环练习
+
+##### 7.1.1水仙花练习
+
+~~~java
+
+/*
+   要求: 计算出水仙花数
+     三位数 100-999  个位数的立方+十位数的立方+百位数的立方 = 自己本身
+	 153 = 1*1*1 + 5*5*5 + 3*3*3
+	 已知三位数  123  获取出每个数位 利用 除法,取模运算
+	 
+	实现步骤:
+	 1. 定义变量才存储 三个数位上的整数
+	 2. 利用循环,循环中的变量,从100变化到999
+	 3. 循环中得到三位数,利用算法,拆解成三个单独数位
+	 4. 将三个数位立方的求和计算, 计算后的求和,和他自己进行比较判断
+	    想同,就是水仙花
+*/
+public class LoopTest_1{
+	public static void main(String args[]){
+		//定义三个变量
+		int bai=0;
+		int shi=0;
+		int ge=0;
+		
+		//循环，从100-999
+		for(int i=100;i<1000;i++){
+			//对i进行计算，获取出三个数位
+			//获取百位
+			bai=i/100;
+			//获取十位
+			shi=i/10%10;
+			//获取个位
+			ge=i%10;
+			if(bai*bai*bai+shi*shi*shi+ge*ge*ge==i){
+				System.out.println(i);
+			}
+		}
+	}
+}
+~~~
+
+##### 7.1.2ASCII表
+
+数字0-9对应ASCII编码十进制为48-57, 
+
+字母A-Z对应ASCII编码十进制为65-90，
+
+字母a-z对应ASCII编码十进制为97-122。
+
+~~~java
+/*
+    ASCII编码表演示
+	字符Java 数据类型,char
+	整数Java 数据类型,int
+	
+	int 类型和 char 数据类型转换
+	char  两个字节, int 四个字节
+	
+	char转成int类型的时候,类型自动提示,char数据类型,会查询编码表,得到整数
+	int转成char类型的时候,强制转换,会查询编码表
+	
+	char存储汉字,查询Unicode编码表
+	
+	char可以和int计算,提示为int类型, 内存中两个字节
+	char取值范围是0-65535, 无符号的数据类型
+*/
+public class ASCIIDemo{
+	public static void main(String[] args){
+		char c = 'a';
+		int i = c + 1;
+		System.out.println(i);
+		
+		int j = 90;
+		char h = (char)j;
+		System.out.println(h);
+		
+		System.out.println( (char)6 );
+		
+		char k = '你';
+		System.out.println(k);
+		
+		
+	}
+}
+~~~
+
+##### 7.1.3输出所有英文字符
+
+~~~java
+
+/*
+	利用循环，输出字母包含大写小写，52个
+	输出A-Z a-zz
+	利用编码表实现，字母和数字的对应关系
+	A-Z 65-90
+	a-z 97-122
+	
+	
+*/
+
+
+
+
+public class LoopTest_2{
+	public static void main(String args[]){
+		//定义变量，保存2个字母
+		char xiaoXie='a';
+		char daXie='A';
+		
+		
+		for(int i=0;i<26;i++){
+			//输出保存字母的变量
+			System.out.println(xiaoXie+" "+daXie);
+			xiaoXie++;
+			daXie++;
+		}
+	}
+}
+~~~
+
+##### 7.1.4九九乘法表
+
+~~~java
+/*
+    利用嵌套for循环,实现99乘法表示
+	实现步骤:
+	  1. 定义外循环控制行数
+	  2. 内循环控制个数,个数,每次都在递增
+	  3. 循环中输出,乘法表的格式   1*3=3
+*/
+public class LoopTest_3{
+	public static void main(String[] args){
+		print99(6);
+	}
+	
+	public static void print99(int n){
+		//定义外循环,循环9次
+		for(int i = 1; i <= n; i++){
+			//定义内循环,每次递增,循环条件, <=i
+			for(int j = 1; j <= i ;j++){
+				//按照标准格式,输出打印
+				System.out.print(j+"*"+i+"="+i*j+"\t");
+			}
+			System.out.println();
+		}
+	}
+}
+~~~
+
+#### 7.2数组练习
+
+##### 7.2.1数组遍历
+
+~~~java
+/*
+	定义方法，实现数组的遍历
+	遍历中，输出结果[11,33.565,66,78,89]
+	int[] arr={3,4,45,7};
+	结果包含字符串，[].
+	实现步骤:
+		1.定义方法实现数组的遍历
+		2.先打印[中括号
+		3.遍历数组
+			输出数组的元素和逗号
+			判断是否遍历到了数组的最后一个元素，如果是最后一个元素，不答应逗号
+*/
+public class ArrayMethodTest{
+	public static void main(String args[]){
+		int [] arr={11,22,33,44,55};
+		printArray(arr);
+		
+	}
+	
+	/*
+		定义方法，实现功能
+		返回值:void
+		方法参数：数组
+	*/
+	public static void printArray(int[] arr){
+		//输出半边括号，不要换行
+		System.out.print("[");
+		//数组遍历
+		for(int i=0;i<arr.length;i++){
+			//判断数组是不是最后一个元素
+			if(i==arr.length-1){
+				System.out.print(arr[i]+"]");
+				
+			}else{
+				System.out.print(arr[i]+",");
+			}
+			
+		}
+		
+	}
+}
+
+~~~
+
+
+
+##### 7.2.2数组的逆序
+
+~~~java
+/*
+	数组的逆序
+	数组中的元素，进行位置上的交换
+	逆序 不等于 逆序输出
+	就是数组中最远的两个索引，进行位置交换，实现数组的逆序
+	使用的是数组的指针思想，就是变量，
+	反转 reverse
+	
+*/
+
+public class ArrayMethodTest_1{
+	public static void main(String args[]){
+		int[] arr={1,2,3,4};
+		reverse(arr);
+		printArray(arr);
+	
+	}
+
+
+	/*
+		定义方法，实现数组的逆序
+		返回值：没有返回值
+		参数：数组
+		
+	*/
+	
+	public static void reverse(int[] arr){
+		//循环遍历
+		for(int min=0,max=arr.length-1;min<max;min++,max--){
+			//对数组中的元素进行位置交换
+			//min索引和max索引的元素交换
+			//定义变量，作为临时变量
+			int temp=arr[min];
+			arr[min]=arr[max];
+			arr[max]=temp;
+			
+		}
+		
+	}
+	
+	/*
+		定义方法，实现功能
+		返回值:void
+		方法参数：数组
+	*/
+	public static void printArray(int[] arr){
+		//输出半边括号，不要换行
+		System.out.print("[");
+		//数组遍历
+		for(int i=0;i<arr.length;i++){
+			//判断数组是不是最后一个元素
+			if(i==arr.length-1){
+				System.out.print(arr[i]+"]");
+				
+			}else{
+				System.out.print(arr[i]+",");
+			}
+			
+		}
+		
+	}
+}
+~~~
+
+##### 7.2.3数组的选择排序
+
+~~~java
+/*
+	数组的排序:一般都是升序排序，元素，小到大的排序
+	
+	
+	两种排序方式
+		选择排序：数组的每个元素都进行比较
+		冒泡排序：数组中相邻元素进行比较
+		规则:比较大小，位置交换
+*/
+
+
+
+
+
+public class ArrayMethodTest_2{
+	public static void main(String args[]){
+		int[] arr={55,123,24,23,3,5,6};
+		//调用选择排序方法
+		selectSort(arr);
+		//调用打印方法
+		printArray(arr);
+	
+	}
+	
+	
+	/*
+		定义方法，实现数组的选择排序
+		返回值：没有
+		参数:数组的排序
+		实现步骤:
+			1.嵌套循环实现排序
+				外循环，控制的是一共比较多少次
+				内循环，控制的是每次比较了多少个元素
+			2.判断元素的大小值
+			  小值，存储到小的索引
+				
+	*/
+	public static void selectSort(int[] arr){
+		for(int i=0;i<arr.length-1;i++){
+			for(int j=i+1;j<arr.length;j++){
+				//数组的元素进行判断
+				if(arr[i]>arr[j]){
+					//数组换位
+					int temp=arr[j];
+					arr[j]=arr[i];
+					arr[i]=temp;
+				}
+			}
+		}
+	}
+	
+	
+	
+	
+	/*
+		定义方法，实现功能
+		返回值:void
+		方法参数：数组
+	*/
+	public static void printArray(int[] arr){
+		//输出半边括号，不要换行
+		System.out.print("[");
+		//数组遍历
+		for(int i=0;i<arr.length;i++){
+			//判断数组是不是最后一个元素
+			if(i==arr.length-1){
+				System.out.print(arr[i]+"]");
+				
+			}else{
+				System.out.print(arr[i]+",");
+			}
+			
+		}
+		
+	}
+}
+~~~
+
+##### 7.2.4数组的冒泡排序
+
+~~~java
+/*
+  数组的排序: 一般都是升序排列,元素,小到大的排列
+  
+  两种排序的方式
+     选择排序: 数组的每个元素都进行比较
+	 冒泡排序: 数组中相邻元素进行比较
+	 规则: 比较大小,位置交换
+*/
+
+
+
+
+
+
+public class ArrayMethodTest_3{
+	public static void main(String args[]){
+		int[] arr={55,123,24,23,3,5,6};
+		//调用冒泡排序方法
+		bubbleSort(arr);
+		//调用打印方法
+		printArray(arr);
+	
+	}
+	
+	
+	/*
+		定义方法，实现数组的冒泡排序
+		返回值：没有
+		参数:数组的排序
+		
+				
+	*/
+	public static void bubbleSort(int[] arr){
+		for(int i=0;i<arr.length-1;i++){
+			//每次内循环的比较，从0开始
+			for(int j=0;j<arr.length-1;j++){
+				if(arr[j]>arr[j+1]){
+					int temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+					
+				}
+			}
+		}	
+	
+	}
+	
+	
+	
+	
+	/*
+		定义方法，实现功能
+		返回值:void
+		方法参数：数组
+	*/
+	public static void printArray(int[] arr){
+		//输出半边括号，不要换行
+		System.out.print("[");
+		//数组遍历
+		for(int i=0;i<arr.length;i++){
+			//判断数组是不是最后一个元素
+			if(i==arr.length-1){
+				System.out.print(arr[i]+"]");
+				
+			}else{
+				System.out.print(arr[i]+",");
+			}
+			
+		}
+		
+	}
+}
+~~~
+
+##### 7.2.5数组的二分查找法
+
+![1557742206691](C:\Users\请\AppData\Roaming\Typora\typora-user-images\1557742206691.png)
+
+~~~java
+/*
+	数组的折半查找(二分查找)
+*/
+
+import java.util.Scanner;
+
+
+
+
+public class ArrayMethodTest_4{
+	public static void main(String args[]){
+		int[] arr={55,123,24,23,3,5,6};
+		//调用冒泡排序方法
+		bubbleSort(arr);
+		//调用打印方法
+		printArray(arr);
+		System.out.println();
+		System.out.println("请输入您要查找的整数，如果在数组中有的话，系统会返回数组下标");
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int index=binarySearch(arr,n);
+		System.out.println(index);
+	
+	}
+	
+	/*
+		定义方法，实现，折半查找
+		返回值：索引
+		参数：数组，被找的元素
+		实现步骤：
+			1.需要的变量定义
+				三个指针
+			2.进行循环折半
+				可以折半的条件 min<=max
+			3.让被找的元素，和中间索引元素进行比较
+				元素大于中间索引  min=mid+1
+				元素小于中间索引  max=mid-1
+				元素等于中间索引  找到了，结束了，返回中间索引
+			4.循环结束，无法折半
+				元素没有找到，返回-1
+		
+	*/
+	public static int binarySearch(int[] arr,int key){
+		//定义三个指针变量
+		int min=0;
+		int max=arr.length-1;
+		int mid=0;
+		//循环折半，条件 min<=max
+		while(min<=max){
+			//公式，计算中间索引
+			mid=(min+max)/2;
+			//让被找元素和中间元素进行比较
+			if(key>arr[mid]){
+				min=mid+1;
+			}else if(key<arr[mid]){
+				max=mid-1;
+			}else if(key==arr[mid]){
+				//找到元素，返回mid索引
+				return mid;
+			}
+			
+		}
+		return -1;
+	}
+	
+	/*
+		定义方法，实现数组的冒泡排序
+		返回值：没有
+		参数:数组的排序
+		
+				
+	*/
+	public static void bubbleSort(int[] arr){
+		for(int i=0;i<arr.length-1;i++){
+			//每次内循环的比较，从0开始
+			for(int j=0;j<arr.length-1;j++){
+				if(arr[j]>arr[j+1]){
+					int temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+					
+				}
+			}
+		}	
+	
+	}
+	
+	
+	
+	
+	/*
+		定义方法，实现功能
+		返回值:void
+		方法参数：数组
+	*/
+	public static void printArray(int[] arr){
+		//输出半边括号，不要换行
+		System.out.print("[");
+		//数组遍历
+		for(int i=0;i<arr.length;i++){
+			//判断数组是不是最后一个元素
+			if(i==arr.length-1){
+				System.out.print(arr[i]+"]");
+				
+			}else{
+				System.out.print(arr[i]+",");
+			}
+			
+		}
+		
+	}
+}
+~~~
+
