@@ -1,4 +1,4 @@
-## JAVA基础语法
+JAVA基础语法
 
 该笔记是编写者java学习过程的记录，主要的目的是为了方便以后java的学习和复习。如果你也看到了这份笔记的话，希望他可以给你帮助。好了，让我们开始吧。
 
@@ -2659,6 +2659,728 @@ public class ArrayMethodTest_4{
 			
 		}
 		
+	}
+}
+~~~
+
+#### 8.1Eclipse的安装与使用
+
+- 下载 <http://www.eclipse.org>
+
+- 安装 (只需要解压后就能使用)
+
+- 卸载（只需要将文件夹删除就可以了）
+
+-  注意： 开发软件的安装目录中，尽量不要出现空格与中文
+-  注意:下载的eclipse
+
+##### 8.1.1Eclipse的使用
+
+点击开启，选择工作空间，用来存放将来编写的java源文件
+
+##### 8.1.2Eclipse的快捷键
+
+~~~java
+/*
+ * 快捷键
+ * 	Alt +/  自动补全
+ * 		写程序是的时候，只写出一部分
+ *  	syso
+ *  	类名Scanner
+ * 		起名字
+ * 
+ *  Ctrl + Shift + F  代码格式化
+ *  
+ *  Ctrl +  /单行注释
+ * 
+ * Alt + Shift +J 添加注释文档
+   
+ * Ctrl + Shift + \多行注释
+ * Ctrl + Shift + \取消多行注释
+ * 
+ * Ctrl + Shift + o 导入包快捷键
+ * 
+ * Alt +上下箭头 移动当前行代码
+ * 
+ * Ctrl +Alt + 上下箭头  赋值当前代码行  支持大面积代码
+ * 
+ * Ctrl +D 删除当前行
+ * 
+ * Ctrl +1 意见提示功能
+ *
+ * Ctrl +2 +L 接受返回值
+ * 
+ * Ctrl +2 +R 重命名
+ *
+ * */
+public class Demo {
+	public static void main(String args[]) {
+		System.out.println("hello world!");
+	}
+}
+~~~
+
+##### 8.1.3断点调试
+
+- 断点： 就是一个标记
+
+-  如何设置断点
+
+  ​	代码区域左边的空白位置 双击即可
+
+- 在哪里加
+
+  ​	想看哪个语句的执行结果就在该语句前面加
+
+- 怎么运行断点的程序
+
+  ​	代码区域右键 -- Debug as -- Java Application
+
+-  显示一个页面，提示是否进入调试页面？ 是否记住当前操作？是(Yes)是（勾选复选框）
+
+- ![img](file:///C:\Users\请\AppData\Local\Temp\ksohtml5612\wps1.jpg) 
+
+-  弹出了断点页面
+
+- ![img](file:///C:\Users\请\AppData\Local\Temp\ksohtml5612\wps2.jpg) 
+
+-  点哪里
+
+   	点击 工具栏中的Step Over (执行下一行)
+
+- 快捷键F6 看到每一步程序的执行过程
+
+- 看哪里
+
+  ​	看代码区域： 对照看程序执行步骤
+
+-  看Debug区域： 对照看程序执行步骤
+
+-  看varable区域： 观察变量的创建、复制、销毁
+
+- 如何消除断点
+
+  ​	把设置断点的方式再执行一遍
+
+- 切换到Debug视图，选择 Breakpoints -- Remove All Breakpoints 就是2个XX的图标
+
+##### 8.1.4项目的导入
+
+- 在左侧的PackageExplorer区域右键，选择 import
+- 选择 General -- Existing Projects into Workspace
+- 选择后，点击 next
+- 在新的窗口中，点击 Browse 找到需要导入的项目（注意，找到项目的名字位置就可以了），选中要导入的项目，点击Copy复选框，点击Finish完成。
+- 注意事项
+- Eclipse中已经存在的同名项目不能再次导入
+
+#### 8.2超市管理系统
+
+~~~java
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/*
+ * 超市管理系统主实现：
+ * 	1.商品数据的初始化
+ *  2.用户的菜单选择
+ *  3.更具选择执行不同的功能
+ *  	3.1Read  查看商品
+ *  	3.2Creat  添加商品
+ *  	3.3Delete	删除商品	
+ *  	3.4Update	修改商品
+ * 
+ * */
+public class Shopp {
+	public static void main(String[] args) {
+		// 创建ArrayList集合
+		ArrayList<FruitItem> array = new ArrayList<FruitItem>();
+		// 调用商品初始化方法，传递集合
+		init(array);
+		// System.out.println(array);
+
+		while (true) {
+			// 调用菜单方法
+			mainMenu();
+			// 调用用户选择序号方法
+			int choose = chooseFunction();
+			switch (choose) {
+			case 1:
+				// 调用货物清单
+				showFruitList(array);
+				break;
+			case 2:
+				addFruit(array);
+				// 添加货物
+			case 3:
+				deleteFruit(array);
+				// 删除货物
+			case 4:
+				updataFruit(array);
+				// 修改货物
+			default:
+				System.out.println("输入的序号没有");
+				break;
+			}
+		}
+	}
+
+	/*
+	 * 定义方法，商品修改功能 返回值：无 参数:集合
+	 * 
+	 * 
+	 * 提示用户选择的是修改功能 
+	 * 提示用户输入需要修改的商品编号
+	 *  遍历集合，获取每个FruitItem变量 变量调用ID属性，
+	 *  属性和用户输入的编号比较
+	 *   如果相同：
+	 * 修改FruitItem中的属性值 键盘输入
+	 * 
+	 * 
+	 * 
+	 */
+	public static void updataFruit(ArrayList<FruitItem> array) {
+		System.out.println("选择的是商品修改功能");
+		System.out.println("请输入商品的编号");
+		Scanner sc = new Scanner(System.in);
+		int ID=sc.nextInt();
+		//遍历集合
+		for(int i=0;i<array.size();i++) {
+			FruitItem item=array.get(i);
+			//获取FruitItem的ID,和用户输入的ID比较
+			if(ID==item.ID) {
+				System.out.println("请输入新的商品编号");
+				item.ID=sc.nextInt();
+				System.out.println("请输入新的商品名字");
+				item.name=sc.next();
+				System.out.println("请输入新的商品价格");
+				item.price=sc.nextDouble();
+				return;
+				
+			}	
+		}
+		System.out.println("输入的商品编号不存在");
+	}
+
+	/*
+	 * 定义方法，是新啊商品添加功能 提示用户选择的是添加商品功能
+	 * 
+	 * 出啊关键FruitItem变量，变量调用属性 将输入的每个商品属性进行赋值
+	 * 
+	 * 
+	 */
+	public static void addFruit(ArrayList<FruitItem> array) {
+		System.out.println("选择的是添加商品功能");
+		// 创建Scanner变量
+		Scanner sc = new Scanner(System.in);
+		// 输入商品的编号
+		System.out.println("请输入商品的编号");
+		int ID = sc.nextInt();
+		// 输出商品的名字
+		System.out.println("请输入商品的名字");
+		String name = sc.next();
+		// 输入商品的单价
+		System.out.println("请输入商品的单价");
+		double price = sc.nextDouble();
+
+		// 创建FruitItem类型的变量
+		FruitItem item = new FruitItem();
+		// item属性
+		item.ID = ID;
+		item.name = name;
+		item.price = price;
+		array.add(item);
+	}
+
+	/*
+	 * 定义方法，事项商品的删除功能 返回值无
+	 * 
+	 * 
+	 * 删除依靠的是商品的编号 提示用户选择的是删除功能 键盘输入商品的编号 遍历集合，获取集合每个FruitItem变量 变量调用属性
+	 * ID,和用户输入的编号对比，相同就删除
+	 * 
+	 * 
+	 */
+	public static void deleteFruit(ArrayList<FruitItem> array) {
+		System.out.println("选择的是删除功能");
+		System.out.println("请输入商品的编号");
+		Scanner sc = new Scanner(System.in);
+
+		int ID = sc.nextInt();
+		// 遍历集合
+		for (int i = 0; i < array.size(); i++) {
+			FruitItem item = array.get(i);
+			// 变量调用id属性，和用户输入的编号比较
+			if (item.ID == ID) {
+				// 移除集合中的元素
+				// 集合的方法remove实现
+				array.remove(i);
+				System.out.println("删除成功");
+				return;
+			}
+		}
+		System.out.println("您输入的商品不存在");
+	}
+
+	/*
+	 * 定义方法，显示货物清单功能 返回值 无 参数 集合 遍历集合，获取集合中每个FruitItem变量，变量调用属性
+	 * 
+	 * 
+	 */
+	public static void showFruitList(ArrayList<FruitItem> array) {
+		System.out.println();
+		System.out.println("================商品库存清单================");
+		System.out.println("商品编号         商品名称                商品单价");
+		// 遍历集合
+		for (int i = 0; i < array.size(); i++) {
+			// 集合get方法，获取出每个FruitItem变量
+			FruitItem item = array.get(i);
+			// 调用属性
+			System.out.println(item.ID + "      " + item.name + "           " + item.price);
+		}
+	}
+
+	/*
+	 * 定义方法，接受用户键盘输入 返回编号
+	 * 
+	 * 
+	 */
+	public static int chooseFunction() {
+		Scanner sc = new Scanner(System.in);
+		return sc.nextInt();
+	}
+
+	/*
+	 * 定义方法，显示主菜单 提供给用户哪些先选择 返回值：无 参数值：无
+	 * 
+	 * 
+	 */
+	public static void mainMenu() {
+		System.out.println();
+		System.out.println("============欢迎光临ItCast超市============");
+		System.out.println("1: 货物 清单   2: 添加货物   3: 删除货物   4: 修改货物  5: 退出");
+		System.out.println("请您输入要操作的功能序号");
+	}
+
+	/*
+	 * 定义方法，实现数据初始化 先将一部分数据，存储到集合中 返回值:无 参数:集合 方法名:init
+	 * 
+	 * 
+	 */
+	public static void init(ArrayList<FruitItem> array) {
+		// 创建出多个FruitItem类型，并且赋值
+		FruitItem f1 = new FruitItem();
+		f1.ID = 9527;
+		f1.name = "少林寺酥饼";
+		f1.price = 12.7;
+
+		FruitItem f2 = new FruitItem();
+		f2.ID = 9008;
+		f2.name = "尚康杂粮牡丹饼";
+		f2.price = 14.7;
+
+		FruitItem f3 = new FruitItem();
+		f3.ID = 9520;
+		f3.name = "新疆哈密瓜";
+		f3.price = 122.7;
+		// 创建的3个FruitInem对象，添加到集合中
+		array.add(f1);
+		array.add(f2);
+		array.add(f3);
+	}
+}
+~~~
+
+~~~java
+/*
+ * 自定义类，描述商品信息
+ *  商品属性
+ *  编号 int
+ *  品名 String
+ *  价格 double
+ *  数量  int
+ *  总价 double
+
+ * 
+ * */
+public class FruitItem {
+   int ID;
+   String name;
+   double price;
+   int number;
+   double money;
+   
+}
+
+~~~
+
+#### 9.1面向对象编程OOP
+
+面向过程：是一个执行者
+
+面向对象:是一个指挥者，遇到问题找人做
+
+比如：
+
+将大象放入冰箱中
+
+面向过程:开门  放大象 关门
+
+面向对象
+
+1。创建类
+
+先创建一个类描述大象
+
+  再 创建一个类描述冰箱
+
+  冰箱类中写冰箱属性和方法
+
+开门，储存，关门
+
+2.使用对象
+
+​    创建大象对象
+
+​    创建冰箱对象
+
+​    调用冰箱的方法
+
+  	xxx.开门 xxx.储存(大象)  xxx.关门
+
+#### 9.2测试汽车类
+
+~~~java
+package cn.itcast.demo01;
+
+/**
+ * 类的方式,描述显示中的事物 小汽车
+ * 
+ * 		小汽车  属性和功能
+ * 			属性：颜色  轮胎个数  变量定义
+ * 			功能：跑  方法
+ *		属性和方法，都属于类的成员
+ *
+ */
+public class Car {
+	//定义Car类中的属性
+		
+		//定义颜色属性
+		String colour;
+		//定义轮胎个数
+		int count;
+		
+	//定义Car类中的方法
+		public void run() {
+			System.out.println("小汽车车在跑..."+colour+"..."+count);
+			
+		}
+		
+}
+~~~
+
+~~~java
+package cn.itcast.demo01;
+
+/**
+ * 测试，自定义的类Car
+ * 创建出Car类的变量
+ * 变量，调用属性，成员变量
+ * 变量，调用方法
+ *
+ */
+public class CarTest {
+
+	public static void main(String[] args) {
+		//创建出Car类的对象
+		Car c=new Car();
+		//对象.调用类中的属性和方法
+		c.colour="无色";
+		c.count=5;
+		c.run();
+	}
+
+}
+~~~
+
+#### 9.3对象的内存图
+
+![1557819163497](C:\Users\请\AppData\Roaming\Typora\typora-user-images\1557819163497.png)
+
+#### 9.4类和对象的区别
+
+类是对某一类事物的抽象描述
+
+对象用于表示现实中该类事物的个体
+
+#### 9.5局部变量和成员变量的区别
+
+1. 定义位置上的区别
+
+   成员变量：写在类中的，方法外的变量.
+
+   局部变量：写在方法中，语句中的变量
+
+  2.作用域不同
+
+​		成员变量，作用范围是整个类
+
+​		局部变量，作用范围是方法内，语句内
+
+3.默认值不同
+
+​		成员变量，有自己的默认值
+
+​		局部变量，没有默认值，不赋值不能用
+
+#### 9.6private关键字
+
+出现安全问题:age问题，可以会出现赋值为负数的情况
+
+负数不会导致程序问题，但违反了生活中的真实情况
+
+为了提高安全问题：让外面的类，不允许直接调用我的成员变量
+
+private 私有 属于成员变量修饰符，不能修饰局部变量
+
+被private修饰的成员，只能在自己的本类中被使用
+
+
+
+对私有变量，提供公共的访问方式：方法
+
+定义方法对age进行赋值，方法名字，必须set开头
+
+原理：可以在方法里对变量参数进行范围限制
+
+#### 9.7私有化Person带get和set方法
+
+~~~java
+package cn.itcast.demo05;
+/*
+ * 类描述人：
+ *  	属性：姓名和年龄
+ *  	方法：说话
+ *  
+ *  
+ *  私有化所有的属性(成员变量)，必须写对应的get/set方法
+ *  凡是自定义的类，自定义的成员变量，应该私有化，提供get/set
+ *  
+ */
+public class Person {
+	private String name;
+	private int age;
+	
+	//set方法，变量name,age赋值
+	public void setAge(int a) {
+		age=a;
+	}
+	public void setName(String n) {
+		name=n;
+	}
+	
+	//get方法，变量name,age获取值
+	public int getAge() {
+		return age;
+		
+	}
+	public String getName() {
+		return name;
+		
+	}
+	
+	public void speak() {
+		System.out.println("人在说话"+name+"..."+age);
+	}
+}
+~~~
+
+~~~java
+package cn.itcast.demo05;
+
+public class PersonTest {
+
+	public static void main(String[] args) {
+		Person p =new Person();
+		//调用set方法，对成员变量赋值
+		p.setAge(18);
+		p.setName("旺财");
+		p.speak();
+		
+		//调用get方法，获取成员变量的值
+		System.out.println(p.getName());
+		System.out.println(p.getAge());
+	}
+
+}
+~~~
+
+#### 9.8this关键字和内存图
+
+用来区分成员变量和局部变量的同名问题
+
+不用this，采用的是就近原则，采用局部变量
+
+this.成员变量  this 表示的是本类的对象的地址
+
+内存图
+
+![1557837101557](C:\Users\请\AppData\Roaming\Typora\typora-user-images\1557837101557.png)
+
+#### 9.9this的年龄比较
+
+~~~java
+package cn.itcast.demo06;
+
+public class Person {
+	private int age;
+	
+	
+	public void setAge(int age) {
+		this.age=age;
+	}
+	public int getAge() {
+		return age;
+	}
+	
+	/*
+	 * 定义方法:比较是否同龄人，是就返回true，不是就返回false
+	 * 谁和谁比，我自己和别人比
+	 * 方法的返回值  true  false
+	 * 方法的参数：别人
+	 */
+	public boolean compare(Person p) {
+		//自己和别人比年龄，自己是this.p
+		return this.age==p.age;
+	}
+}
+~~~
+
+~~~java
+package cn.itcast.demo06;
+
+public class PersonTest {
+	public static void main(String[] args) {
+		//测试Person类中的比较功能
+		//创建出两个Person对象
+		Person p1=new Person();
+		Person p2=new Person();
+		
+		p1.setAge(15);
+		p2.setAge(16);
+		
+		//p1对象调用自己的方法compare出传递p2对象
+		boolean b=p1.compare(p2);
+		System.out.println(b);
+	}
+}
+~~~
+
+#### 9.10随机点名器重构
+
+~~~java
+package cn.itcast.demo07;
+/*
+ * 学生类:
+ * 	属性:姓名，年龄
+ */
+public class Student {
+		private String name;
+		private int age;
+		
+	public void setName(String name) {
+		this.name=name;
+	}
+	public void setAge(int age) {
+		this.age=age;
+	}
+	public String getName() {
+		return name;
+	}
+	public int getAge() {
+		return age;
+	}
+}
+
+~~~
+
+~~~java
+package cn.itcast.demo07;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+/*
+ * 随机点名器案例
+ * 1.建立集合，将Student对象存储到集合中
+ * 2.总览所有学生的信息
+ * 	将存储到集合中的Student对象遍历出来
+ * 3.随机学生
+ * 	随机数，作为索引，到集合中区查找找匀速
+ */
+public class CallName {
+
+	public static void main(String[] args) {
+		ArrayList<Student> array=new ArrayList<Student>();
+		addStudent(array);
+		printStudent(array);
+		randomStudent(array);
+		
+	}
+	
+	
+	/*
+	 * 定义方法，总览学生信息
+	 * 遍历集合
+	 */
+	public static void printStudent(ArrayList<Student> array) {
+		for(int i=0;i<array.size();i++) {
+			Student s=array.get(i);
+			System.out.println(s.getName()+"  "+s.getAge());
+		}
+	}
+	
+	
+	/*
+	 * 随机数生成学生信息
+	 */
+	
+	public static void randomStudent(ArrayList<Student> array) {
+		Random ra=new Random();
+		int index=ra.nextInt(array.size());
+		Student s=array.get(index);
+		System.out.println(s.getName());
+	}
+	
+	/*
+	 * 定义方法，存储Student对象，到集合中
+	 */
+	public static void addStudent(ArrayList<Student> array) {
+		Student s1=new Student();
+		s1.setName("李一");
+		s1.setAge(11);
+		
+		Student s2=new Student();
+		s2.setName("李二");
+		s2.setAge(12);
+		
+		Student s3=new Student();
+		s3.setName("李三");
+		s3.setAge(13);
+		
+		Student s4=new Student();
+		s4.setName("李四");
+		s4.setAge(14);
+		
+		Student s5=new Student();
+		s5.setName("李五");
+		s5.setAge(15);
+		
+		array.add(s1);
+		array.add(s2);
+		array.add(s3);
+		array.add(s4);
+		array.add(s5);
 	}
 }
 ~~~
