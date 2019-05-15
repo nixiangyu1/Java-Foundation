@@ -3376,8 +3376,7 @@ public class CallName {
 		s5.setName("李五");
 		s5.setAge(15);
 		
-		array.add(s1);
-		array.add(s2);
+		array.add(s1	array.add(s2);
 		array.add(s3);
 		array.add(s4);
 		array.add(s5);
