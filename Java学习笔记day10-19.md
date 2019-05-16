@@ -181,7 +181,7 @@ package cn.itcast.demo01;
  * 
  * 接口成员变量的定义
  * 	成员变量的定义，具体要求
- * 	要求:必须定义位常量
+ * 	要求:必须定义为常量
  * 固定格式:
  * 	public static final 数据类型 变量值=值
  * 
@@ -348,3 +348,130 @@ p instanceof Student 判断，p是不是Student类型对象
 如果是，返回true
 
 #### 11.12多态中的转型
+
+多态的转型分为向上转型与向下转型两种：
+
+向上转型：当有子类对象赋值给一个父类引用时，便是向上转型，多态本身就是向上转型的过程。
+
+使用格式：
+
+父类类型  变量名 = new 子类类型();
+
+如：Person p = new Student();
+
+向下转型：一个已经向上转型的子类对象可以使用强制类型转换的格式，将父类引用转为子类引用，这个过程是向下转型。如果是直接创建父类对象，是无法向下转型的！
+
+使用格式：
+
+子类类型 变量名 = (子类类型) 父类类型的变量;
+
+如:Student stu = (Student) p;  //变量p 实际上指向Student对象
+
+#### 11.13笔记本电脑案例
+
+定义USB接口（具备开启功能、关闭功能），笔记本要使用USB设备，即笔记本在生产时需要预留可以插入USB设备的USB接口，即就是笔记本具备使用USB设备的功能，但具体是什么USB设备，笔记本并不关心，只要符合USB规格的设备都可以。鼠标和键盘要想能在电脑上使用，那么鼠标和键盘也必须遵守USB规范，不然鼠标和键盘的生产出来无法使用
+
+进行描述笔记本类，实现笔记本使用USB鼠标、USB键盘
+
+- USB接口，包含开启功能、关闭功能
+-  笔记本类，包含运行功能、关机功能、使用USB设备功能
+- l鼠标类，要符合USB接口
+-  键盘类，要符合USB接口
+
+~~~java
+package cn.itcast.demo09;
+/*
+ * 自定义的USB接口类
+ * 规范，抽象方法
+ * 开，关
+ */
+public interface USB {
+	public abstract void open();
+	public abstract void close();
+	
+}
+~~~
+
+
+
+~~~java
+package cn.itcast.demo09;
+
+public class Keyboard implements USB{
+	public void open(){
+		System.out.println("开启键盘");
+	}
+	public void close(){
+		System.out.println("关闭键盘");
+	}
+}
+
+~~~
+
+
+
+~~~java
+package cn.itcast.demo09;
+/*
+ * 自定义的鼠标类
+ * 满足USB接口规范
+ * 实现USB,重写抽象方法
+ */
+public class Mouse implements USB {
+	public void open() {
+		System.out.println("开启鼠标");
+	}
+	public void close() {
+		System.out.println("关闭鼠标");
+	}
+}
+
+~~~
+
+~~~java
+package cn.itcast.demo09;
+/*
+ * 定义笔记本类
+ * 功能：开机 关机，使用USB设备
+ */
+public class Computer {
+	public void openComputer() {
+			System.out.println("笔记本开机");
+	}
+	public void closeComputer(){
+			System.out.println("笔记本关机");
+	}
+	
+	//使用USB设备，哪个设备
+	//方法的参数，就是USB设备
+	public void useUSB(USB usb){
+		usb.open();
+		usb.close();
+		
+	}
+}
+
+
+~~~
+
+~~~java
+package cn.itcast.demo09;
+
+public class Test {
+	public static void main(String[] args) {
+		//创建笔记本对象，拥有笔记本功能
+		Computer com =new Computer();
+		com.openComputer();
+		
+		//调用笔记本使用USB设备的方法
+		//参数，是USB接口类型，接口不能建立对象
+		//调用方法，传递USB接口的实现类对象
+		com.useUSB(new Mouse());
+		//使用USB设备，使用键盘
+		com.useUSB(new Keyboard());
+		
+		com.closeComputer();
+	}
+}
+~~~
+
