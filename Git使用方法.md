@@ -14,7 +14,7 @@
 
 检查本地文件与github文件：git status
 
-更新github文件:        git add *
+更新github文件:        git add 文件名字
 
 ​                                      git commit -m '说明'
 
