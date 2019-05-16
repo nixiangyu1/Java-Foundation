@@ -2,6 +2,8 @@
 
 参考视频:https://www.bilibili.com/video/av33238577/?p=1
 
+参考博客https://blog.csdn.net/jerryhanjj/article/details/72777618
+
 进入想要创建库的地址  cd 
 
 首先登陆用户名     git config --global user.name '用户名'
@@ -20,3 +22,4 @@
 
 推送到github:            git push -u origin master
 
+github上的代码同步到本地（代码合并）：git pull --rebase origin master
