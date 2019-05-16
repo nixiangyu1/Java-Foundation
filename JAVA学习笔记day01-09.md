@@ -2764,7 +2764,7 @@ public class Demo {
 
 - 切换到Debug视图，选择 Breakpoints -- Remove All Breakpoints 就是2个XX的图标
 
-##### 8.1.4项目的导入
+##### 8.1.4项目的导入方法
 
 - 在左侧的PackageExplorer区域右键，选择 import
 - 选择 General -- Existing Projects into Workspace
