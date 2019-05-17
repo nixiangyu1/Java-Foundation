@@ -475,3 +475,224 @@ public class Test {
 }
 ~~~
 
+#### 12.1构造方法
+
+创建对象的时候初始化属性值
+
+构造方法的定义格式
+
+ 	权限 方法名（参数列表）{
+
+​    }
+
+​	方法的名字必须和类的名字一致
+
+每个class都必须有构造方法 构造方法不写也有
+
+**一旦写了构造方法，默认的空参构造方法就没有了**
+
+构造方法可以重载，你可以写多个构造方法
+
+#### 12.2this()在构造方法之间的调用
+
+this（参数）,必须写在构造函数的第一行
+
+~~~java
+public Person(){
+    this("李四","30");
+}
+public Person(String name,int age){
+    this.name=name;
+    this.age=age;
+}
+~~~
+
+#### 12.3super关键字
+
+super（），必须写在构造函数第一行
+
+在子类中可以用super()的方法，调用父类的构造方法
+
+注意：子类空参数构造方法的第一行，有一个隐式的代码 super（）
+
+即默认调用父类的构造方法
+
+注意：
+
+​	1.父类没有写构造函数（系统默认有一个无参构造函数），子类可以不写	构造函数（可以理解为：子类的系统默认构造函数，默认调用了  super();）
+
+​    2.如果父类有无参构造函数，子类可以不写构造函数（同上理解）
+​    3.如果父类有有参构造函数，则子类必须在自己的构造函数中显示的调用  父类的构造函数即super(参数名)
+​    4.如果父类的构造函数只有一个，且修饰符是private，则不可以被继承。
+
+#### 12.4super应用
+
+练习：描述学生和工人这两个类，将他们的共性name和age抽取出来存放在父类中，并提供相应的get和set方法，同时需要在创建学生和工人对象就必须明确姓名和年龄
+
+~~~java
+package cn.itcast.demo02;
+
+public class People {
+	String name;
+	int age;
+	public People(String name,int age) {
+		this.name=name;
+		this.age=age;
+	}
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name=name;
+	}
+	public int getAge() {
+		return this.age;
+	}
+	public void getAge(int age) {
+		this.age=age;
+	}
+}
+~~~
+
+~~~java
+package cn.itcast.demo02;
+
+public class Worker extends People{
+	public Worker(String name,int age) {
+		super(name,age);
+	}
+}
+~~~
+
+~~~java
+package cn.itcast.demo02;
+
+public class Student extends People {
+	public Student(String name,int age) {
+		super(name, age);
+		
+	}
+}
+~~~
+
+~~~java
+package cn.itcast.demo02;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Worker w=new Worker("光头强",30);
+		Student s=new Student("李阳",14);
+		System.out.println(w.getName());
+		System.out.println(w.getAge());
+	}
+
+}
+~~~
+
+#### 12.5完整员工案例
+
+某IT公司有多名员工，按照员工负责的工作不同，进行了部门的划分（研发部员工、维护部员工）。研发部根据所需研发的内容不同，又分为JavaEE工程师、Android工程师；维护部根据所需维护的内容不同，又分为网络维护工程师、硬件维护工程师。
+
+公司的每名员工都有他们自己的员工编号、姓名，并要做它们所负责的工作。
+
+工作内容
+
+-  JavaEE工程师：员工号为xxx的 xxx员工，正在研发淘宝网站
+- Android工程师：员工号为xxx的 xxx员工，正在研发淘宝手机客户端软件
+- 网络维护工程师：员工号为xxx的 xxx员工，正在检查网络是否畅通
+- 硬件维护工程师：员工号为xxx的 xxx员工，正在修复打印机
+
+请根据描述，完成员工体系中所有类的定义，并指定类之间的继承关系。进行XX工程师类的对象创建，完成工作方法的调用。
+
+~~~java
+package cn.itcast.demo03;
+
+public abstract class Employee {
+	private String name;
+	private String ID;
+	public abstract void work();
+	
+	public Employee(String name,String ID) {
+		this.name=name;
+		this.ID=ID;
+	}
+	
+	public void setName(String name) {
+		this.name=name;
+	}
+	public String getName() {
+		return this.name;
+	}
+	public void setID(String ID) {
+		this.ID=ID;
+	}
+	public String getID() {
+		return this.ID;
+	}
+}
+~~~
+
+~~~java
+package cn.itcast.demo03;
+
+public abstract class Developer extends Employee{
+	public Developer(String name,String ID) {
+		super(name,ID);
+	}
+}
+~~~
+
+~~~java
+package cn.itcast.demo03;
+
+public abstract class Maintainer extends Employee {
+	public Maintainer(String name,String ID) {
+		super(name,ID);
+	}
+}
+
+~~~
+
+~~~java
+package cn.itcast.demo03;
+
+public class JavaEE extends Developer {
+	public JavaEE(String name,String ID) {
+		super(name,ID);
+	}
+	public void work() {
+		System.out.println(super.getName()+"  "+super.getID()+"  "+"正在开发淘宝");
+	}
+}
+~~~
+
+~~~java
+package cn.itcast.demo03;
+
+public class Android extends Developer{
+	public Android(String name, String ID) {
+		super(name, ID);
+		
+	}
+	
+	public void work() {
+		System.out.println(super.getName()+"  "+super.getID()+"  "+"正在开发安卓");
+	}
+}
+
+~~~
+
+~~~java
+package cn.itcast.demo03;
+
+public class Test {
+	public static void main(String[] args) {
+		JavaEE ee=new JavaEE("倪翔宇","开发部001");
+		Android an=new Android("刘淑媛","开发部002");
+		ee.work();
+		an.work();
+	}
+}
+~~~
+
