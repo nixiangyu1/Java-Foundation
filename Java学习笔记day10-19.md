@@ -804,3 +804,277 @@ static{
 }
 ~~~
 
+#### 14.1Eclipse的应用
+
+##### 14.1.1常用的快捷键
+
+Ctrl+T：查看继承关系
+
+Ctrl+鼠标左击：查看源代码
+
+Alt+Shift+s:快速添加get 和set
+
+##### 14.1.2Java中的文档注释和制作
+
+/**回车
+
+#### 14.2酒店案例
+
+某五星级酒店，资金雄厚，要招聘多名员工（经理、厨师、服务员）。入职的员工需要记录个人信息（姓名、工号、经理特有奖金属性）。他们都有自己的工作要做。
+
+本案例要完成如下需求：
+
+-  获取酒店幸运员工；
+- 酒店开设VIP服务，酒店的厨师与服务员可以提供VIP服务。（厨师做菜加量、服务员给顾客倒酒）。
+-  编写测试类
+
+1. 向酒店中，增加多名员工（其中包含1名经理，1名厨师、2名服务员）；
+2.  调用酒店员工的工作功能
+3.  调用酒店员工的VIP服务功能
+
+代码见day10 demo1
+
+#### 15.1API的概念
+
+API:Application (应用) Programming(程序) interface(接口)
+
+#### 15.2Object
+
+Object类是Java语言中的根类，即所有类的父类。
+
+#### 15.4equals方法
+
+equals()是一个方法，只能比较引用数据类型。重写前比较的是地址值，重写后比一般是比较对象的属性。
+
+```java
+//默认的equals方法
+public boolean equals(Object obj){
+    return this==obj;
+}
+```
+
+重写equals方法
+
+```java
+public boolean equals(Object obj) {
+		//判断当前调用equals方法的对象和传递进来的对象是否是同一个
+		if(this == obj){
+			return true;
+		}
+		//判断传递进来的对象是否是Person类型
+		if(!(obj instanceof Person)){
+			return false;
+		}
+		//将obj向下转型为Perosn引用，访问其属性
+		Person p = (Person)obj;
+		return this.age == p.age;
+	}
+```
+
+#### 15.5toString方法
+
+toString方法返回该对象的字符串表示，
+
+输出语句中，写的是一个对象，默认调用对象的toString方法
+
+其实该字符串内容就是对象的类型+@+内存地址值。
+
+由于toString方法返回的结果是内存地址，而在开发中，经常需要按照对象的属性得到相应的字符串表现形式，因此也需要重写它。
+
+```java
+class Person extends Object{
+	String name;
+	int age ;
+
+	//根据Person类的属性重写toString方法
+
+	public String toString() {
+
+		return name+age;
+
+	}
+
+}
+```
+
+#### 15.6String类
+
+ String类特点:
+
+- ​	一切都是对象，字符串事物""也是对象
+- ​	类是描述事物，String类，描述字符串对象的类
+- ​	所有的""都是String类的对象
+
+String类重写过toString方法
+
+String类重写过equals方法
+
+String类有很多构造方法
+
+```java
+String s1 = new String(); //创建String对象，字符串中没有内容
+	
+byte[] bys = new byte[]{97,98,99,100};
+String s2 = new String(bys); // 创建String对象，把数组元素作为字符串的内容
+String s3 = new String(bys, 1, 3); //创建String对象，把一部分数组元素作为字符串的内容，参数offset为数组元素的起始索引位置，参数length为要几个元素
+	
+char[] chs = new char[]{’a’,’b’,’c’,’d’,’e’};
+String s4 = new String(chs); //创建String对象，把数组元素作为字符串的内容
+String s5 = new String(chs, 0, 3);//创建String对象，把一部分数组元素作为字符串的内容，参数offset为数组元素的起始索引位置，参数count为要几个元素
+
+String s6 = new String(“abc”); //创建String对象，字符串内容为abc
+```
+
+String类的方法查找
+
+获取字符串的长度
+
+```java
+String str = "abcde";
+int len = str.length();
+System.out.println("len="+len);
+```
+
+获取部分字符串
+
+![img](file:///C:\Users\请\AppData\Local\Temp\ksohtml2832\wps1.jpg) 
+
+
+
+```java
+String str = "abcde";
+
+String s1 = str.substring(1); //返回一个新字符串，内容为指定位置开始到字符串末尾的所有字符
+
+String s2 = str.substring(2, 4);//返回一个新字符串，内容为指定位置开始到指定位置结束所有字符
+
+System.out.println("str="+str);
+
+System.out.println("s1="+s1);
+
+System.out.println("s2="+s2);
+
+```
+
+获取指定位置字符
+
+```java
+char ch =str.charAt(i)
+```
+
+将字符串转成大写
+
+```java
+String big = start.toUpperCase();
+```
+
+将字符串转成小写
+
+```java
+String small = end.toLowerCase();
+```
+
+
+
+
+
+获取指定字符串中，大写字母、小写字母、数字的个数
+
+```java
+public static void method(String str){
+	int bigCount = 0; //大写字母的个数
+	int smallCount = 0; //小写字母的个数
+	int numberCount = 0; //数字的个数
+	for (int i=0; i < str.length(); i++) {
+         char ch = str.charAt(i); //获取指定位置上的字符
+        //65-90
+		if (ch>=’A’ && ch<=’Z’) {
+			bigCount++;
+            //97-122
+} else if (ch>=’a’ && ch<=’z’) {
+smallCount++;
+            //48-57
+} else if (ch>=’0’ && ch<=’9’) {
+	    numberCount++;
+}
+}
+System.out.println("大写字母个数："+bigCount);
+System.out.println("小写字母个数："+smallCount);
+System.out.println("数字个数："+numberCount);
+}
+```
+
+将字符串中，第一个字母转换成大写，其他字母转换成小写，并打印改变后的字符串。
+
+```java
+public static String convert(String str){
+	//获取第一部分为字符串
+	String start = str.substring(0,1);
+	//获取第二部分为字符串
+	String end = str.substring(1);
+	//把第一部分字符串转换成大写字母，把第二部分字符串转换成小写字母
+	String big = start.toUpperCase();
+	String small = end.toLowerCase();
+//把两部分字符串连接在一起，得到一个完整的字符串
+	return big+small;
+}
+```
+
+查询大字符串中，出现指定小字符串的次数。如“hellojava,nihaojava,javazhenbang”中查询出现“java”的次数。
+
+![1558165735847](C:\Users\请\AppData\Roaming\Typora\typora-user-images\1558165735847.png)
+
+```java
+public static int getCount(String big, String small){
+	int count = 0; //出现小串的次数
+	int index = -1;//出现小串的位置
+	/*
+		while的循环条件三步骤：
+		步骤一. big.indexOf(small) 获取小串在大串中出现的位置
+		步骤二. 把小串出现的位置，赋值给变量index
+		步骤三. 判断出现的位置是否为-1， 如果位置等于-1，说明大串中         已经查询不到小串了；如果位置不等于-1，那么，进行循环，完成次		 数累加与修改大串的操作
+*/
+	while ((index = big.indexOf(small)) != -1 ){
+		count++;//出现次数+1
+		//更改大串内容
+		big = big.substring(index+1);
+}
+```
+
+#### 15.7字符串缓冲区StringBuffer类
+
+StringBuffer又称为可变字符序列，它是一个类似于 String 的字符串缓冲区，通过某些方法调用可以改变该序列的长度和内容。
+
+![img](file:///C:\Users\请\AppData\Local\Temp\ksohtml2832\wps2.jpg)
+
+StringBuilder 运行速度快，但是线程不安全
+
+练习：int[] arr = {34,12,89,68};将一个int[]中元素转成字符串  格式 [34,12,89,68]
+
+```java
+package cn.itcast.demo2;
+/*
+ * 练习：int[] arr = {34,12,89,68};将一个int[]中元素转成字符串  格式 [34,12,89,68]
+ */
+public class StringTest {
+	public static void main(String[] args) {
+		int[] arr = {34,12,89,68};
+		toString(arr);
+	}
+	public static void toString(int[] arr) {
+		StringBuffer buffer=new StringBuffer();
+		buffer.append("[");
+		for(int i=0;i<arr.length;i++) {
+			
+			if(i==arr.length-1) {
+				buffer.append(arr[i]+"]");
+			}else {
+				buffer.append(arr[i]+",");
+			}
+		}
+
+		System.out.println(buffer);
+	}
+}
+```
+
