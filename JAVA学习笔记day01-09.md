@@ -2702,7 +2702,7 @@ public class ArrayMethodTest_4{
  * 
  * Alt +上下箭头 移动当前行代码
  * 
- * Ctrl +Alt + 上下箭头  赋值当前代码行  支持大面积代码
+ * Ctrl +Alt + 上下箭头  复制当前代码行  支持大面积代码
  * 
  * Ctrl +D 删除当前行
  * 
@@ -2711,7 +2711,7 @@ public class ArrayMethodTest_4{
  * Ctrl +2 +L 接受返回值
  * 
  * Ctrl +2 +R 重命名
- *
+ * Alt+Shift+s:快速添加get 和set
  * */
 public class Demo {
 	public static void main(String args[]) {
