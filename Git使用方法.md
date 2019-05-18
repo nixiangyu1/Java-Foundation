@@ -23,3 +23,11 @@
 推送到github:            git push -u origin master
 
 github上的代码同步到本地（代码合并）：git pull --rebase origin master
+
+创建新的分支：git branch <分支名>
+
+切换分支：  git cheackout   <分支名>
+
+合并分支  git merge  <分支名>
+
+将分支上的提交记录合并到master上  
