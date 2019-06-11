@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="E:/2019JAVA学习/01_第1阶段-JavaSE基础入门教程（共33天）/day29/day29_source/mysql-connector-java-5.1.37/mysql-connector-java-5.1.37-bin.jar" sourcepath="E:/2019JAVA学习/01_第1阶段-JavaSE基础入门教程（共33天）/day29/day29_source/mysql-connector-java-5.1.37/src"/>
+	<classpathentry kind="lib" path="E:/2019JAVA学习/Java基础/DBUtils/commons-dbutils-1.6/commons-dbutils-1.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
